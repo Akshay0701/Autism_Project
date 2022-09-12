@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorAccent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Parent.Parent_Login">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:gravity="center"
+                android:text="Parent Login"
+                android:textColor="@color/colorPrimaryblack"
+                android:textSize="26dp"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/childlogo"/>
+
+            <EditText
+                android:id="@+id/user_login_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Email"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/colorPrimaryblack"/>
+
+            <EditText
+                android:id="@+id/user_login_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/colorPrimaryblack"/>
+
+            <Button
+                android:id="@+id/user_login_signIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorPrimary"
+                android:text="Login"
+                android:textColor="@color/colorAccent"/>
+
+            <Button
+                android:id="@+id/gotoRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="50dp"
+                android:background="@color/colorPrimary"
+                android:text="Not Already Registered"
+                android:textColor="@color/colorAccent" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
