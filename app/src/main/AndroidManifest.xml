@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.autismproject">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,19 +20,39 @@
         android:theme="@style/Theme.AutismProject"
         tools:targetApi="31">
         <activity
-            android:name=".ChildHome"
+            android:name=".VideoPlayer"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="landscape"
             android:exported="false" />
         <activity
-            android:name=".ChildRegister"
+            android:name=".Parent.ParentVideo"
             android:exported="false" />
         <activity
-            android:name=".ChildLogin"
+            android:name=".Parent.CreateTask"
             android:exported="false" />
         <activity
-            android:name=".ParentRegister"
+            android:name=".Parent.ParentTasksActivity"
             android:exported="false" />
         <activity
-            android:name=".Parent_Login"
+            android:name=".Parent.ChildProfile"
+            android:exported="false" />
+        <activity
+            android:name=".Parent.ParentHome"
+            android:exported="false" />
+        <activity
+            android:name=".Child.ChildHome"
+            android:exported="false" />
+        <activity
+            android:name=".Child.ChildRegister"
+            android:exported="false" />
+        <activity
+            android:name=".Child.ChildLogin"
+            android:exported="false" />
+        <activity
+            android:name=".Parent.ParentRegister"
+            android:exported="false" />
+        <activity
+            android:name=".Parent.ParentLogin"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

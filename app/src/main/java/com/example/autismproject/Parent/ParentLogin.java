@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.autismproject.R;
 
-public class Parent_Login extends AppCompatActivity {
+public class ParentLogin extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

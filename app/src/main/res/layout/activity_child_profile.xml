@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    tools:context=".Parent.ChildProfile">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearc"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="@drawable/buttondesign"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_height="200dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_weight="2"
+                    android:paddingLeft="20dp"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/txt_greet"
+                        android:layout_width="match_parent"
+                        android:text="Good Morning"
+                        android:layout_marginTop="30dp"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        android:textSize="30dp"
+                        android:layout_height="wrap_content"></TextView>
+                    <TextView
+                        android:id="@+id/txt_name"
+                        android:layout_width="match_parent"
+                        android:text="Akshay Jadhav"
+                        android:textColor="@color/colorAccent"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="bold"
+                        android:textSize="25dp"
+                        android:layout_height="wrap_content"></TextView>
+                    <TextView
+                        android:id="@+id/txt_dash_grade"
+                        android:layout_width="match_parent"
+                        android:text="Grade"
+                        android:textColor="@color/colorAccent"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:layout_height="wrap_content"></TextView>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="100dp"
+                    android:src="@drawable/childlogo"
+                    android:layout_marginRight="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="100dp"></ImageView>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:text="Child Profile"
+            android:textSize="26dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/colorDark"
+            android:layout_marginLeft="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></TextView>
+
+        <TextView
+            android:text="Name: "
+            android:textSize="20dp"
+            android:gravity="center"
+            android:textColor="@color/colorDark"
+            android:layout_marginLeft="7dp"
+            android:id="@+id/child_profile_name_age_scores"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></TextView>
+
+        <Button
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tasks"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/child_profile_task"
+            android:background="@color/colorPrimary"/>
+        <Button
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Games"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/child_profile_games"
+            android:background="@color/colorPrimary"/>
+        <Button
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Videos"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/child_profile_videos"
+            android:background="@color/colorPrimary"/>
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

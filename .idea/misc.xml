@@ -3,13 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/drawable/buttondesign.xml" value="0.2" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/layout/activity_child_home.xml" value="0.25" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/layout/activity_child_login.xml" value="0.25" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/layout/activity_child_profile.xml" value="0.1885245901639344" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/layout/activity_child_register.xml" value="0.25" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/layout/activity_create_task.xml" value="0.1885245901639344" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/layout/activity_parent_login.xml" value="0.25" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/layout/activity_parent_home.xml" value="0.18" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/layout/activity_parent_login.xml" value="0.12090163934426229" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/layout/activity_parent_register.xml" value="0.25" />
-        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/layout/row_child_task.xml" value="0.25" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/layout/activity_parent_video.xml" value="0.1885245901639344" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/layout/activity_tasks.xml" value="0.1885245901639344" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/layout/activity_video_player.xml" value="0.1" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/layout/row_child.xml" value="0.18" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/layout/row_child2.xml" value="0.1885245901639344" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/layout/row_child_task.xml" value="0.16" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/layout/row_clickboard_object.xml" value="0.25" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/AutismProject/app/src/main/res/layout/row_videos.xml" value="0.25" />
       </map>
