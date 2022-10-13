@@ -146,6 +146,7 @@ public class AdapterVideos extends RecyclerView.Adapter<AdapterVideos.MyHolder> 
         if (hour > 0) {
             return String.format("%02d:%02d:%02d", hour, minute, second);
         }
+        
         else {
             return String.format("%02d:%02d" , minute, second);
         }
