@@ -63,7 +63,7 @@ public class ParentHome extends AppCompatActivity {
         clickboard = findViewById(R.id.parent_home_Clickboard);
 
         clickboard.setOnClickListener(view -> {
-//            startActivity(new Intent(ParentHome.this, ParentClickBoard.class));
+            startActivity(new Intent(ParentHome.this, ParentClickBoard.class));
         });
 
         //init firebase

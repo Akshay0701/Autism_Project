@@ -8,9 +8,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.MediaMetadataRetriever;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,12 +19,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-//import com.bumptech.glide.Glide;
 import com.bumptech.glide.Glide;
-import com.example.autismproject.Models.Child;
-import com.example.autismproject.Models.Task;
+import com.example.autismproject.Models.Category;
 import com.example.autismproject.Models.Video;
-import com.example.autismproject.Parent.ChildProfile;
 import com.example.autismproject.R;
 import com.example.autismproject.VideoPlayer;
 import com.google.firebase.database.DataSnapshot;
@@ -35,64 +29,53 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 // this class is going to be in use to display child's to respective parents
-public class AdapterVideos extends RecyclerView.Adapter<AdapterVideos.MyHolder>  {
+public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyHolder>  {
 
     Context context;
-    List<Video> videoList;
+    List<Category> categoryList;
     // if true then give access to parent as deleting videos.
     // else give child access like opening the video
     Boolean isParent;
 
-    public AdapterVideos(Context context, List<Video> videoList, Boolean isParent) {
+    public AdapterCategory(Context context, List<Category> categoryList, Boolean isParent) {
         this.context = context;
-        this.videoList = videoList;
+        this.categoryList = categoryList;
         this.isParent = isParent;
     }
 
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.row_videos,parent,false);
-        return new AdapterVideos.MyHolder(view);
+        View view= LayoutInflater.from(context).inflate(R.layout.row_clickboard_category,parent,false);
+        return new AdapterCategory.MyHolder(view);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, final int position) {
-        final String cId= videoList.get(position).getcID();
-        final String pId= videoList.get(position).getpID();
-        final String vId= videoList.get(position).getvID();
-        final String title= videoList.get(position).getTitle();
-        final String url= videoList.get(position).getUrl();
+        final String cId= categoryList.get(position).getcID();
+        final String pId= categoryList.get(position).getpID();
+        final String url= categoryList.get(position).getImgUrl();
 
         //setdata
-        holder.title.setText(title);
-        String videoID = extractYTId(url);
-        String videoImgURl = "https://img.youtube.com/vi/" + videoID + "/0.jpg";
-        Toast.makeText(context, "" + url + " " + videoImgURl, Toast.LENGTH_SHORT).show();
-        Glide.with(context).load(videoImgURl).into(holder.videoThumbnail);
+        try{
+            Picasso.get().load(url).placeholder(R.drawable.childlogo).into(holder.categoryImageView);
+        }catch (Exception e){
+            Picasso.get().load(R.drawable.childlogo).into(holder.categoryImageView);
+        }
 
         holder.itemView.setOnClickListener(view -> {
-            if (isParent) {
-                showDeleteVideoDialog(videoList.get(position));
-            } else {
-                SharedPreferences.Editor editor;
-                editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
-                editor.putString("selectedVideoID", videoID);
-                editor.apply();
-                context.startActivity(new Intent(context, VideoPlayer.class));
-            }
+            SharedPreferences.Editor editor;
+            editor= PreferenceManager.getDefaultSharedPreferences(context).edit();
+            editor.putString("selectedCategoryID", cId);
+            editor.apply();
         });
     }
 
@@ -115,10 +98,11 @@ public class AdapterVideos extends RecyclerView.Adapter<AdapterVideos.MyHolder> 
                 .setNegativeButton("No", dialogClickListener).show();
     }
 
+    // on long click delete the category with same pID
     private void deleteVideo(Video video) {
         final ProgressDialog pd=new ProgressDialog(context, androidx.appcompat.R.style.Base_Theme_AppCompat_Dialog_Alert);
         pd.setMessage("Deleting..");
-        Query fquery = FirebaseDatabase.getInstance().getReference("Videos").orderByChild("vID").equalTo(video.getvID());
+        Query fquery = FirebaseDatabase.getInstance().getReference("Categories").orderByChild("cID").equalTo(video.getvID());
         fquery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -136,46 +120,16 @@ public class AdapterVideos extends RecyclerView.Adapter<AdapterVideos.MyHolder> 
 
     }
 
-    public static String convertMillieToHMmSs(long millie) {
-        long seconds = (millie / 1000);
-        long second = seconds % 60;
-        long minute = (seconds / 60) % 60;
-        long hour = (seconds / (60 * 60)) % 24;
-
-        String result = "";
-        if (hour > 0) {
-            return String.format("%02d:%02d:%02d", hour, minute, second);
-        }
-        
-        else {
-            return String.format("%02d:%02d" , minute, second);
-        }
-    }
-
-    public static String extractYTId(String ytUrl) {
-        String vId = null;
-        Pattern pattern = Pattern.compile("^https?://.*(?:youtu.be/|v/|u/\\w/|embed/|watch?v=)([^#&?]*).*$", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(ytUrl);
-        if (matcher.matches()){
-            vId = matcher.group(1);
-        }
-        return vId;
-    }
-
     @Override
     public int getItemCount() {
-        return videoList.size();
+        return categoryList.size();
     }
 
     static class MyHolder extends RecyclerView.ViewHolder{
-        TextView title, description, time;
-        ImageView videoThumbnail;
+        ImageView categoryImageView;
         public MyHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.row_video_title);
-            description = itemView.findViewById(R.id.row_video_description);
-            time = itemView.findViewById(R.id.row_video_time);
-            videoThumbnail = itemView.findViewById(R.id.row_video_thumbnail);
+            categoryImageView = itemView.findViewById(R.id.category_img);
         }
     }
 
