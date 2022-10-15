@@ -9,7 +9,6 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,41 +20,30 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.autismproject.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateTask extends AppCompatActivity {
+public class AddNewCategory extends AppCompatActivity {
 
-    EditText taskDescription, taskTimer;
-    TextView taskTime;
-    Button addTask;
+
+    EditText categoryName;
+    Button addCategory;
     ImageView imageIv;
-    // for storing timestamp
-    String timestamp;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -79,21 +67,15 @@ public class CreateTask extends AppCompatActivity {
     //progresses bar
     ProgressDialog pd;
 
-    // child id for retrieving all tasks
-    String cID;
-
     String mUid,mEmail;
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_task);
-        taskDescription=findViewById(R.id.parent_add_task_description);
-        taskTimer=findViewById(R.id.parent_add_task_timer);
-        taskTime=findViewById(R.id.parent_add_task_time);
-        addTask=findViewById(R.id.parent_add_taskbtn);
-        imageIv=findViewById(R.id.parent_add_task_image);
+        setContentView(R.layout.activity_add_new_category);
+        categoryName=findViewById(R.id.parent_add_category_name);
+        imageIv=findViewById(R.id.parent_add_category_image);
 
         pd= new ProgressDialog(this);
 
@@ -109,50 +91,28 @@ public class CreateTask extends AppCompatActivity {
         imageIv.setOnClickListener(v -> showImageDialog());
 
 
-        addTask.setOnClickListener(view -> checkValidation());
-
-        taskTime.setOnClickListener(view -> {
-            Calendar mcurrentTime = Calendar.getInstance();
-            int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-            int minute = mcurrentTime.get(Calendar.MINUTE);
-            TimePickerDialog mTimePicker;
-            mTimePicker = new TimePickerDialog(CreateTask.this, (timePicker, selectedHour, selectedMinute) -> {
-                Calendar calendar = GregorianCalendar.getInstance();
-                calendar.setTime(new Date());
-                calendar.set(Calendar.HOUR, selectedHour);
-                calendar.set(Calendar.MINUTE, selectedMinute);
-                taskTime.setText("Selected Time: "+ selectedHour + ":" + selectedMinute);
-                timestamp = String.valueOf(calendar.getTimeInMillis());
-            }, hour, minute, true);//Yes 24 hour time
-            mTimePicker.setTitle("Select Time");
-            mTimePicker.show();
-        });
+        addCategory = findViewById(R.id.parent_add_categoryBtn);
+        addCategory.setOnClickListener(view -> checkValidation());
 
     }
 
     private void checkValidation() {
-        String description,time,timer;
-        description=taskDescription.getText().toString();
-        time=taskTime.getText().toString();
-        timer=taskTimer.getText().toString();
-        if(description.isEmpty()){
-            Toast.makeText(this, "description is empty", Toast.LENGTH_SHORT).show();
-        }else if(time.isEmpty() && timestamp.isEmpty()){
-            Toast.makeText(this, "time is empty", Toast.LENGTH_SHORT).show();
-        }else if(timer.isEmpty()){
-            Toast.makeText(this, "timer name is empty", Toast.LENGTH_SHORT).show();
-        }else if(image_rui==null){
+        String name;
+        name = categoryName.getText().toString();
+        if (name.isEmpty()) {
+            Toast.makeText(this, "name is empty", Toast.LENGTH_SHORT).show();
+        } else if(image_rui==null) {
             Toast.makeText(this, "Select Image", Toast.LENGTH_SHORT).show();
         }
         else{
-            startAddingTask(description, time, timer);
+            startAddingCategory(name);
         }
     }
 
-    private void startAddingTask(String description, String time, String timer) {
+    private void startAddingCategory(String name) {
         pd.setMessage("publishing post...");
         pd.show();
-        String filePathName="Posts/"+"post_"+timestamp;
+        String filePathName="Posts/"+"post_"+ String.valueOf(System.currentTimeMillis());
 
 
         Bitmap bitmap=((BitmapDrawable)imageIv.getDrawable()).getBitmap();
@@ -175,41 +135,38 @@ public class CreateTask extends AppCompatActivity {
 
             if(uriTask.isSuccessful()){
                 //uri is received upload post to firebase database
-                DatabaseReference ref1 =FirebaseDatabase.getInstance().getReference("Tasks");
+                DatabaseReference ref1 =FirebaseDatabase.getInstance().getReference("Categories");
 
-                String tId= ref1.push().getKey();
+                String cId= ref1.push().getKey();
                 Map<String, Object> hashMap = new HashMap<>();
                 //put info
-                hashMap.put("tID", tId);
-                hashMap.put("text", description);
-                hashMap.put("timestamp",timestamp);
-                hashMap.put("timer", timer);
-                hashMap.put("isComplete", "0");
-                hashMap.put("pID", mUid);
-                hashMap.put("cID", cID);
+                hashMap.put("name", name);
                 hashMap.put("imgUrl", downloadUri);
-                // hashMap.put("pTime",timestamp);
+                hashMap.put("cID",cId);
+                hashMap.put("pID", mUid);
 
-                assert tId != null;
-                ref1.child(tId).updateChildren(hashMap).addOnSuccessListener(aVoid -> {
+                assert cId != null;
+                ref1.child(cId).updateChildren(hashMap).addOnSuccessListener(aVoid -> {
                     pd.dismiss();
-                    Toast.makeText(CreateTask.this, "Task Uploaded", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddNewCategory.this, "Category Uploaded", Toast.LENGTH_SHORT).show();
 
                     //reset view
                     imageIv.setImageURI(null);
                     image_rui=null;
 
-                    startActivity(new Intent(CreateTask.this, ParentTasksActivity.class));
+                    startActivity(new Intent(AddNewCategory.this, ParentClickBoard.class));
                     finish();
                 }).addOnFailureListener(e -> {
-                    Toast.makeText(CreateTask.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddNewCategory.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     pd.dismiss();
                 });
 
             }
 
-        }).addOnFailureListener(e -> Toast.makeText(CreateTask.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show());
+        }).addOnFailureListener(e -> Toast.makeText(AddNewCategory.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show());
     }
+
+
 
     @Override
     public void onStart() {
@@ -219,17 +176,7 @@ public class CreateTask extends AppCompatActivity {
             mUid = mAuth.getUid();
             mEmail = mAuth.getCurrentUser().getEmail();
         }else{
-            startActivity(new Intent(CreateTask.this, ParentRegister.class));
-            finish();
-        }
-
-        // get selected child id
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        final FirebaseAuth mAuth=FirebaseAuth.getInstance();
-        cID=prefs.getString("selectedChildID","");
-
-        if(cID.isEmpty()) {
-            startActivity(new Intent(CreateTask.this, ParentHome.class));
+            startActivity(new Intent(AddNewCategory.this, ParentRegister.class));
             finish();
         }
     }
@@ -242,7 +189,7 @@ public class CreateTask extends AppCompatActivity {
         String[] options={"Camera","Gallery"};
 
         //dialog box
-        AlertDialog.Builder builder=new AlertDialog.Builder(CreateTask.this);
+        AlertDialog.Builder builder=new AlertDialog.Builder(AddNewCategory.this);
 
         builder.setTitle("Choose Action");
 
@@ -340,11 +287,8 @@ public class CreateTask extends AppCompatActivity {
                     }
                 }
                 else{
-
+                    // sojao beta
                 }
-
-
-
 
             }
             break;
@@ -401,4 +345,5 @@ public class CreateTask extends AppCompatActivity {
             }
         }
     }
+
 }

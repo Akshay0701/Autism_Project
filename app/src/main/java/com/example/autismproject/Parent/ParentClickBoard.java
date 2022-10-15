@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -74,6 +75,22 @@ public class ParentClickBoard extends AppCompatActivity {
         databaseReferenceItem = firebaseDatabase.getReference("Items");
         pref = PreferenceManager.getDefaultSharedPreferences(ParentClickBoard.this);
 
+        addNewCategory = findViewById(R.id.parent_clickboard_addcategory);
+        addNewCategory.setOnClickListener(view -> {
+            startActivity(new Intent(ParentClickBoard.this, AddNewCategory.class));
+        });
+
+        addNewItem = findViewById(R.id.parent_clickboard_additem);
+        addNewItem.setOnClickListener(view -> {
+            if (cID.isEmpty() && !categoryList.isEmpty()) {
+                SharedPreferences.Editor editor;
+                editor= PreferenceManager.getDefaultSharedPreferences(this).edit();
+                editor.putString("selectedCategoryID", categoryList.get(0).getcID());
+                editor.apply();
+            }
+            startActivity(new Intent(ParentClickBoard.this, AddNewItem.class));
+        });
+
         //load category recyclerview
         categoryRecyclerView = findViewById(R.id.parent_clickboard_category_recyclerview);
         categoryRecyclerView.setHasFixedSize(true);
@@ -131,6 +148,7 @@ public class ParentClickBoard extends AppCompatActivity {
 
     void loadItems(String cID) {
         // load the items from respective category
+        this.cID = cID;
         databaseReferenceItem.addValueEventListener(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override

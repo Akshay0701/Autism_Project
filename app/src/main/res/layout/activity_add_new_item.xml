@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Parent.AddNewItem">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:elevation="10dp"
+        app:cardCornerRadius="20dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorAccent"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:background="@color/colorAccent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/requestBox"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Selected Category"
+                    android:textSize="26dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryblack"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></TextView>
+
+                <androidx.cardview.widget.CardView
+                    app:cardCornerRadius="10dp"
+                    android:padding="10dp"
+                    app:cardBackgroundColor="@color/colorAccent"
+                    android:background="@color/colorAccent"
+                    android:layout_margin="10dp"
+                    android:elevation="20dp"
+                    app:cardElevation="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_margin="6dp"
+                        android:padding="3dp"
+                        android:background="@color/colorAccent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="150dp"
+                            android:id="@+id/add_item_selectedCategory"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:scaleType="fitCenter"
+                            android:layout_height="100dp"
+                            android:src="@drawable/childgroupbck"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:gravity="center"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/add_item_selectedCategory_text"
+                            android:maxLines="1"
+                            android:layout_gravity="center"
+                            android:text="ABCD Video"
+                            android:textColor="#000"
+                            android:textSize="18dp"
+                            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                            />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:text="Add New Item"
+                    android:textSize="26dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryblack"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></TextView>
+
+                <EditText
+                    android:id="@+id/add_item_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:hint="Item Name"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textColorHint="@color/colorgray"></EditText>
+
+                <TextView
+                    android:text="Select Image"
+                    android:textSize="26dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryblack"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></TextView>
+
+                <ImageView
+                    android:id="@+id/add_item_image"
+                    android:layout_width="150dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/childlogo"></ImageView>
+
+                <Button
+                    android:id="@+id/parent_add_categoryBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/colorPrimary"
+                    android:text="Add Item"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="60dp"
+                    android:gravity="center"
+                    android:text="Note: you will only be able to delete your own customised item and will not have any access  to delete the default items"
+                    android:textColor="@color/colorPrimaryblack"></TextView>
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

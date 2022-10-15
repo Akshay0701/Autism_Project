@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -26,6 +27,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -62,7 +65,6 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.MyHolder>  {
         final String url= itemList.get(position).getImgUrl();
 
         //setdata
-        Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
         try{
             Picasso.get().load(url).placeholder(R.drawable.childlogo).into(holder.itemImageView);
         }catch (Exception e){
@@ -72,19 +74,20 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.MyHolder>  {
         holder.itemText.setText(text);
 
         holder.itemView.setOnClickListener(view -> {
-            SharedPreferences.Editor editor;
-            editor= PreferenceManager.getDefaultSharedPreferences(context).edit();
-            editor.putString("selectedCategoryID", cId);
-            editor.apply();
+            if (itemList.get(position).getpID().equals("Admin")) {
+                Toast.makeText(context, "default items can't be deleted", Toast.LENGTH_SHORT).show();
+            } else {
+                showDeleteItemDialog(itemList.get(position));
+            }
         });
     }
 
-    private void showDeleteVideoDialog(Video video) {
+    private void showDeleteItemDialog(Item item) {
         DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
             switch (which){
                 case DialogInterface.BUTTON_POSITIVE:
                     //Yes button clicked
-                    deleteVideo(video);
+                    deleteItem(item);
                     break;
 
                 case DialogInterface.BUTTON_NEGATIVE:
@@ -94,30 +97,57 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.MyHolder>  {
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Do you want to delete Video?").setPositiveButton("Yes", dialogClickListener)
+        builder.setMessage("Do you want to this item?").setPositiveButton("Yes", dialogClickListener)
                 .setNegativeButton("No", dialogClickListener).show();
     }
 
     // on long click delete the category with same pID
-    private void deleteVideo(Video video) {
+    private void deleteItem(Item item) {
         final ProgressDialog pd=new ProgressDialog(context, androidx.appcompat.R.style.Base_Theme_AppCompat_Dialog_Alert);
         pd.setMessage("Deleting..");
-        Query fquery = FirebaseDatabase.getInstance().getReference("Items").orderByChild("iID").equalTo(video.getvID());
-        fquery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds:dataSnapshot.getChildren()) {
-                    ds.getRef().removeValue();
+
+        //image
+        try {
+            StorageReference picRef = FirebaseStorage.getInstance().getReferenceFromUrl(item.getImgUrl());
+            picRef.delete().addOnSuccessListener(aVoid -> {
+                Query fquery = FirebaseDatabase.getInstance().getReference("Items").orderByChild("iID").equalTo(item.getiID());
+                fquery.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot ds:dataSnapshot.getChildren()){
+                            ds.getRef().removeValue();
+                        }
+                        Toast.makeText(context, "Deleted Item", Toast.LENGTH_SHORT).show();
+                        pd.dismiss();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+            }).addOnFailureListener(e -> {
+                pd.dismiss();
+                Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+            });
+        } catch (IllegalArgumentException e){
+            Query fquery= FirebaseDatabase.getInstance().getReference("Items").orderByChild("iID").equalTo(item.getiID());
+            fquery.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for(DataSnapshot ds:dataSnapshot.getChildren()){
+                        ds.getRef().removeValue();
+                    }
+                    Toast.makeText(context, "Deleted Item", Toast.LENGTH_SHORT).show();
+                    pd.dismiss();
                 }
-                Toast.makeText(context, "Deleted Video", Toast.LENGTH_SHORT).show();
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(context, "" + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
+                }
+            });
+        }
     }
 
     @Override
