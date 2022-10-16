@@ -19,6 +19,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AutismProject"
         tools:targetApi="31">
+        <activity android:name=".Games.ShapesActivity"></activity>
+        <activity android:name=".Games.WeekActivity" />
+        <activity android:name=".Games.AlphabetActivity" />
+        <activity android:name=".Games.NumbersActivity" />
+        <activity android:name=".Games.ColorsActivity" />
+        <activity android:name=".Games.PoemsActivity" />
+        <activity
+            android:name=".Games.GameMainAcitivty"
+            android:exported="false" />
         <activity
             android:name=".Parent.AddNewItem"
             android:exported="false" />

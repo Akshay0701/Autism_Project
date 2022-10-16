@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.autismproject.Adapters.AdapterChilds;
+import com.example.autismproject.Games.GameMainAcitivty;
 import com.example.autismproject.Models.Child;
 import com.example.autismproject.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -57,6 +58,10 @@ public class ChildProfile extends AppCompatActivity {
         });
 
         childGames = findViewById(R.id.child_profile_games);
+        childGames.setOnClickListener(view -> {
+            startActivity(new Intent(ChildProfile.this, GameMainAcitivty.class));
+        });
+
         childVideos = findViewById(R.id.child_profile_videos);
         childVideos.setOnClickListener(new View.OnClickListener() {
             @Override
