@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.autismproject.Parent.ChildProfile;
 import com.example.autismproject.Parent.ParentHome;
@@ -20,6 +22,7 @@ public class VideoPlayer extends AppCompatActivity {
 
     String videoID;
     YouTubePlayerView youTubePlayerView;
+    ImageView backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,11 @@ public class VideoPlayer extends AppCompatActivity {
         getLifecycle().addObserver(youTubePlayerView);
         youTubePlayerView.enterFullScreen();
         youTubePlayerView.setClickable(false);
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> {
+            finish();
+        });
 
     }
 

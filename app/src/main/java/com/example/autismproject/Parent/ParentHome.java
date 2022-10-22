@@ -191,7 +191,7 @@ public class ParentHome extends AppCompatActivity {
                 }
 
                 //adapter
-                adapterChilds = new AdapterChilds(ParentHome.this, childList);
+                adapterChilds = new AdapterChilds(ParentHome.this, childList, true);
                 childrenRecyclerView.setLayoutManager(new LinearLayoutManager(ParentHome.this, LinearLayoutManager.VERTICAL, false));
 
                 //set adapter to recycle

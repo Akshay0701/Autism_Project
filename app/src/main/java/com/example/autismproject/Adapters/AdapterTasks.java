@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.autismproject.Child.ChildTaskActivity;
 import com.example.autismproject.Models.Child;
 import com.example.autismproject.Models.Task;
 import com.example.autismproject.Parent.ChildProfile;
@@ -48,6 +50,7 @@ public class AdapterTasks extends RecyclerView.Adapter<AdapterTasks.MyHolder>  {
     // if true then give access to parent as deleting task or editing it.
     // else give child access like completing the task
     Boolean isParent;
+    TextToSpeech textToSpeech;
 
     public AdapterTasks(Context context, List<Task> taskList, Boolean isParent) {
         this.context = context;
@@ -97,15 +100,35 @@ public class AdapterTasks extends RecyclerView.Adapter<AdapterTasks.MyHolder>  {
             Picasso.get().load(R.drawable.childlogo).into(holder.image);
         }
 
+        if (isComplete.equals("1")) {
+            Picasso.get().load(R.drawable.right_tick).into(holder.completionImg);
+        } else {
+            Picasso.get().load(R.drawable.notcompletetaskicon).into(holder.completionImg);
+        }
+
         holder.itemView.setOnClickListener(view -> {
 
             if (isParent) {
                 // show dialog of deleting task
                 showDeleteTaskDialog(taskList.get(position));
-            } else {
+            } else if (taskList.get(position).getIsComplete().equals("0")) {
                 // start Task playing for child
+                SharedPreferences.Editor editor;
+                editor= PreferenceManager.getDefaultSharedPreferences(context).edit();
+                editor.putString("selectedTaskId", tId);
+                editor.apply();
+                context.startActivity(new Intent(context, ChildTaskActivity.class));
+            } else {
+//                textToSpeech = new TextToSpeech(context, i -> {
+////                    // if No error is found then only it will run
+////                    if(i!=TextToSpeech.ERROR){
+////                        // To Choose language of speech
+////                        textToSpeech.setLanguage(Locale.UK);
+////                    }
+////                });
+////                textToSpeech.speak("you have completed this task",TextToSpeech.QUEUE_FLUSH,null);
+                Toast.makeText(context, "you have completed this task", Toast.LENGTH_SHORT).show();
             }
-
         });
 
     }
@@ -196,7 +219,7 @@ public class AdapterTasks extends RecyclerView.Adapter<AdapterTasks.MyHolder>  {
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             image=itemView.findViewById(R.id.row_child_task_img);
-            completionImg=itemView.findViewById(R.id.row_child_task_img);
+            completionImg=itemView.findViewById(R.id.row_child_task_completion_img);
             time=itemView.findViewById(R.id.row_child_task_time);
         }
     }

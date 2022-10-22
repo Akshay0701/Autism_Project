@@ -16,6 +16,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.autismproject.Child.ChildHome;
+import com.example.autismproject.Child.ChildLogin;
 import com.example.autismproject.Models.Child;
 import com.example.autismproject.Parent.ChildProfile;
 import com.example.autismproject.Parent.ParentRegister;
@@ -30,10 +32,14 @@ public class AdapterChilds extends RecyclerView.Adapter<AdapterChilds.MyHolder> 
 
     Context context;
     List<Child> childList;
+    // if its parent panel then onclick of child open child profile
+    // else child login and goto child home page
+    Boolean isParentPanel;
 
-    public AdapterChilds(Context context, List<Child> childList) {
+    public AdapterChilds(Context context, List<Child> childList, Boolean isParentPanel) {
         this.context = context;
         this.childList = childList;
+        this.isParentPanel = isParentPanel;
     }
 
     @NonNull
@@ -63,7 +69,14 @@ public class AdapterChilds extends RecyclerView.Adapter<AdapterChilds.MyHolder> 
             editor.putString("selectedChildID", cId);
             editor.apply();
 
-            context.startActivity(new Intent(context, ChildProfile.class));
+
+            if (isParentPanel) {
+                context.startActivity(new Intent(context, ChildProfile.class));
+            } else {
+                Toast.makeText(context, "Logged In: " + name, Toast.LENGTH_SHORT).show();
+                context.startActivity(new Intent(context, ChildHome.class));
+            }
+
         });
 
     }

@@ -5,7 +5,7 @@
     android:background="@color/colorAccent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Parent.ParentLogin">
+    tools:context=".Child.ChildLogin">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,13 +28,21 @@
                 android:textSize="26dp"
                 android:textStyle="bold"></TextView>
 
+            <LinearLayout
+                android:visibility="visible"
+                android:id="@+id/child_login_parentLinear"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:src="@drawable/childlogo"></ImageView>
 
             <EditText
-                android:id="@+id/user_login_email"
+                android:id="@+id/child_login_parentEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -43,7 +51,7 @@
                 android:textColorHint="@color/colorPrimaryblack"></EditText>
 
             <EditText
-                android:id="@+id/user_login_password"
+                android:id="@+id/child_login_parentPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -53,7 +61,7 @@
                 android:textColorHint="@color/colorPrimaryblack"></EditText>
 
             <Button
-                android:id="@+id/user_login_signIn"
+                android:id="@+id/child_login_signIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -66,10 +74,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="10dp"
                 android:background="@color/colorPrimary"
                 android:text="Not Already Registered"
                 android:textColor="@color/colorAccent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/child_login_childselectionLinear"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:gravity="center"
+                    android:text="Selected Child"
+                    android:textColor="@color/colorPrimaryblack"
+                    android:textSize="26dp"
+                    android:textStyle="bold"></TextView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:id="@+id/parent_home_childrecyclerView"
+                    android:background="@null"
+                    tools:listitem="@layout/row_child"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

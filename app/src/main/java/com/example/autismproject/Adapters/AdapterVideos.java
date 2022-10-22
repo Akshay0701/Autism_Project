@@ -80,7 +80,6 @@ public class AdapterVideos extends RecyclerView.Adapter<AdapterVideos.MyHolder> 
         holder.title.setText(title);
         String videoID = extractYTId(url);
         String videoImgURl = "https://img.youtube.com/vi/" + videoID + "/0.jpg";
-        Toast.makeText(context, "" + url + " " + videoImgURl, Toast.LENGTH_SHORT).show();
         Glide.with(context).load(videoImgURl).into(holder.videoThumbnail);
 
         holder.itemView.setOnClickListener(view -> {

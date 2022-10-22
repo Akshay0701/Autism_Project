@@ -46,8 +46,8 @@
             android:id="@+id/recycler_story"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/item_story"
-            android:layout_marginTop="30dp" />
+            android:layout_marginTop="30dp"
+            tools:listitem="@layout/item_story" />
 
     </RelativeLayout>
 
