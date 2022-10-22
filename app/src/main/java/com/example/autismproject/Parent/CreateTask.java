@@ -139,7 +139,7 @@ public class CreateTask extends AppCompatActivity {
             Toast.makeText(this, "description is empty", Toast.LENGTH_SHORT).show();
         }else if(time.isEmpty() && timestamp.isEmpty()){
             Toast.makeText(this, "time is empty", Toast.LENGTH_SHORT).show();
-        }else if(timer.isEmpty()){
+        }else if(!timer.equals("Select Time")){
             Toast.makeText(this, "timer name is empty", Toast.LENGTH_SHORT).show();
         }else if(image_rui==null){
             Toast.makeText(this, "Select Image", Toast.LENGTH_SHORT).show();

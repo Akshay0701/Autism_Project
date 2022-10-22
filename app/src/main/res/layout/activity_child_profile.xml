@@ -91,29 +91,32 @@
             android:layout_height="wrap_content"></TextView>
 
         <Button
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_width="380dp"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:layout_gravity="center"
             android:text="Tasks"
             android:textColor="@color/colorAccent"
-            android:id="@+id/child_profile_task"
-            android:background="@color/colorPrimary"/>
+            android:id="@+id/child_profile_task"/>
         <Button
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_width="380dp"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:layout_gravity="center"
             android:text="Games"
             android:textColor="@color/colorAccent"
-            android:id="@+id/child_profile_games"
-            android:background="@color/colorPrimary"/>
+            android:id="@+id/child_profile_games"/>
         <Button
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_width="380dp"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:layout_gravity="center"
             android:text="Videos"
             android:textColor="@color/colorAccent"
-            android:id="@+id/child_profile_videos"
-            android:background="@color/colorPrimary"/>
+            android:id="@+id/child_profile_videos"/>
 
 
 

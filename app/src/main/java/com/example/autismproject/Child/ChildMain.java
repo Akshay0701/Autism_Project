@@ -6,12 +6,11 @@ import android.os.Bundle;
 
 import com.example.autismproject.R;
 
-// no need for login for child login
-public class ChildLogin extends AppCompatActivity {
+public class ChildMain extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_child_login);
+        setContentView(R.layout.activity_child_main);
     }
 }

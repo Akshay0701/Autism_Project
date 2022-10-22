@@ -8,17 +8,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.autismproject.Adapters.AdapterChilds;
+import com.example.autismproject.MainActivity;
 import com.example.autismproject.Models.Child;
 import com.example.autismproject.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +40,7 @@ import java.util.List;
 public class ParentHome extends AppCompatActivity {
 
     Button addNewChild, clickboard;
+    ImageView logout;
 
     RecyclerView childrenRecyclerView;
     RecyclerView.LayoutManager  layoutManager;
@@ -78,6 +83,45 @@ public class ParentHome extends AppCompatActivity {
 
         childList = new ArrayList<>();
         loadChilds();
+
+        logout = findViewById(R.id.parent_home_logout);
+        logout.setOnClickListener(view -> {
+            showLogoutDialog();
+        });
+    }
+
+    private void showLogoutDialog() {
+
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //Yes button clicked
+                        startLogout();
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Do you want to Logout?").setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
+
+    }
+
+    private void startLogout() {
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(ParentHome.this).edit();
+        editor.remove("parentUsername");
+        editor.remove("password");
+        editor.apply();
+        mAuth.signOut();
+        startActivity(new Intent(ParentHome.this, MainActivity.class));
+        Toast.makeText(this, "Logged out:" + mEmail, Toast.LENGTH_SHORT).show();
     }
 
     private void createNewChildDialog() {

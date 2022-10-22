@@ -94,6 +94,19 @@ public class AdapterVideos extends RecyclerView.Adapter<AdapterVideos.MyHolder> 
                 context.startActivity(new Intent(context, VideoPlayer.class));
             }
         });
+
+        // testing purpose
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                SharedPreferences.Editor editor;
+                editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+                editor.putString("selectedVideoID", videoID);
+                editor.apply();
+                context.startActivity(new Intent(context, VideoPlayer.class));
+                return false;
+            }
+        });
     }
 
     private void showDeleteVideoDialog(Video video) {

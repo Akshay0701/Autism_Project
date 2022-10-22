@@ -12,15 +12,31 @@
         android:orientation="vertical"
         android:layout_height="match_parent">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
-            android:gravity="center"
-            android:text="Parent Home"
-            android:textColor="@color/colorPrimaryblack"
-            android:textSize="26dp"
-            android:textStyle="bold"/>
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="Parent Home"
+                android:textColor="@color/colorPrimaryblack"
+                android:textSize="26dp"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/parent_home_logout"
+                android:layout_weight="1"
+                android:layout_width="50dp"
+                android:padding="3dp"
+                android:src="@drawable/logoutimg"
+                android:layout_height="50dp"></ImageView>
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/parent_home_Clickboard"

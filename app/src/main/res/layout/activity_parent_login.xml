@@ -34,7 +34,7 @@
                 android:src="@drawable/childlogo"/>
 
             <EditText
-                android:id="@+id/user_login_email"
+                android:id="@+id/parent_login_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -43,7 +43,7 @@
                 android:textColorHint="@color/colorPrimaryblack"/>
 
             <EditText
-                android:id="@+id/user_login_password"
+                android:id="@+id/parent_login_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -53,7 +53,7 @@
                 android:textColorHint="@color/colorPrimaryblack"/>
 
             <Button
-                android:id="@+id/user_login_signIn"
+                android:id="@+id/parent_loginBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
