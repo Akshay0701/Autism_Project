@@ -1,6 +1,7 @@
 package com.example.autismproject.Games;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import com.example.autismproject.R;
 
 public class GameMainAcitivty extends AppCompatActivity {
 
-    RelativeLayout color, number, alphabet, week, shape;
+    CardView color, number, alphabet, week, shape;
 //    LinearLayout poem;
 
     @Override

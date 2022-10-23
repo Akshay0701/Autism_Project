@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/backBtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_margin="10dp"
         android:src="@drawable/backiconwhite"></ImageView>
 
@@ -21,7 +21,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:fontFamily="@font/montserrat"
             android:textColor="@color/colorText"
             android:layout_margin="10dp"
@@ -39,5 +39,17 @@
             android:layout_height="match_parent"/>
 
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:id="@+id/row_child_task_completion_img"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        android:scaleType="centerCrop"
+        android:layout_height="50dp"
+        android:src="@drawable/timeicon"
+        />
 
 </RelativeLayout>

@@ -35,14 +35,15 @@
             android:name=".Child.ChildVideos"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="false" />
-        <activity android:name=".Games.ShapesActivity" />
-        <activity android:name=".Games.WeekActivity" />
-        <activity android:name=".Games.AlphabetActivity" />
-        <activity android:name=".Games.NumbersActivity" />
-        <activity android:name=".Games.ColorsActivity" />
-        <activity android:name=".Games.PoemsActivity" />
+        <activity android:name=".Games.ShapesActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".Games.WeekActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".Games.AlphabetActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".Games.NumbersActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".Games.ColorsActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".Games.PoemsActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name=".Games.GameMainAcitivty"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".Parent.AddNewItem"

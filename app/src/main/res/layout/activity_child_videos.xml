@@ -8,8 +8,8 @@
     tools:context=".Child.ChildVideos">
     <ImageView
         android:id="@+id/backBtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_margin="10dp"
         android:src="@drawable/backiconwhite"></ImageView>
 
@@ -31,7 +31,7 @@
         android:layout_height="match_parent">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:fontFamily="@font/montserrat"
             android:textColor="@color/colorText"
             android:layout_margin="10dp"

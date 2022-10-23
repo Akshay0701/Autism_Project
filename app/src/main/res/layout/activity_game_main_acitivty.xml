@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,15 +9,42 @@
     android:paddingEnd="3dp">
 
     <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:id="@+id/row_child_task_completion_img"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        android:scaleType="centerCrop"
+        android:layout_height="50dp"
         android:src="@drawable/app_icon_android"
-        android:layout_gravity="end"
-        android:layout_margin="15dp"/>
+        />
 
+    <ImageView
+        android:id="@+id/backBtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/backiconwhite"></ImageView>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:text="Learning Games"
+        android:textColor="@color/colorText"
+        android:textSize="26dp"
+        android:textStyle="bold" />
 
 
     <ScrollView
+        android:layout_below="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">
@@ -28,148 +55,121 @@
             android:orientation="vertical"
             android:layout_marginBottom="20dp">
 
-            <RelativeLayout
-                android:id="@+id/color"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="380dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/color_item"
-                    android:layout_marginRight="18dp"
-                    android:layout_marginLeft="18dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="COLORS"
-                    android:textSize="40sp"
-                    android:textStyle="bold"
-                    android:textColor="#fff"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/cabin_sketch_bold"
-                    android:layout_marginStart="105dp"
-                    android:layout_marginTop="20dp"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <ImageView
-                    android:layout_width="380dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/number_item"
-                    android:layout_marginRight="18dp"
-                    android:layout_marginLeft="18dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NUMBERS"
-                    android:textSize="40sp"
-                    android:textStyle="bold"
-                    android:textColor="#fff"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/cabin_sketch_bold"
-                    android:layout_marginStart="105dp"
-                    android:layout_marginTop="20dp"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
+            <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/alphabet"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/colorAccent"
+                android:background="@color/colorAccent"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                app:cardElevation="10dp"
+                android:layout_gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
+                android:layout_height="220dp">
                 <ImageView
-                    android:layout_width="380dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/alphabet_item"
-                    android:layout_marginRight="18dp"
-                    android:layout_marginLeft="18dp" />
-
-                <TextView
                     android:layout_width="wrap_content"
+                    android:id="@+id/row_child_task_img"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"
                     android:layout_height="wrap_content"
-                    android:text="ALPHABETS"
-                    android:textSize="40sp"
-                    android:textStyle="bold"
-                    android:textColor="#fff"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/cabin_sketch_bold"
-                    android:layout_marginStart="105dp"
-                    android:layout_marginTop="20dp"/>
+                    android:src="@drawable/alphabetsicon"
+                    />
+            </androidx.cardview.widget.CardView>
 
-            </RelativeLayout>
-
-            <RelativeLayout
+            <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/week"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/colorAccent"
+                android:background="@color/colorAccent"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                app:cardElevation="10dp"
+                android:layout_gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
+                android:layout_height="220dp">
                 <ImageView
-                    android:layout_width="380dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/days_item"
-                    android:layout_marginRight="18dp"
-                    android:layout_marginLeft="18dp" />
-
-                <TextView
                     android:layout_width="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"
                     android:layout_height="wrap_content"
-                    android:text="WEEK DAYS"
-                    android:textSize="40sp"
-                    android:textStyle="bold"
-                    android:textColor="#fff"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/cabin_sketch_bold"
-                    android:layout_marginStart="105dp"
-                    android:layout_marginTop="20dp"/>
+                    android:src="@drawable/weekgameicon"
+                    />
+            </androidx.cardview.widget.CardView>
 
-            </RelativeLayout>
+            <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/number"
+                app:cardCornerRadius="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                app:cardBackgroundColor="@color/colorAccent"
+                android:background="@color/colorAccent"
+                android:layout_margin="20dp"
+                app:cardElevation="10dp"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="220dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/numbersgameicon"
+                    />
+            </androidx.cardview.widget.CardView>
 
-            <RelativeLayout
+
+            <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/color"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/colorAccent"
+                android:background="@color/colorAccent"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                app:cardElevation="10dp"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="220dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/colorgameicon"
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/shape"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/colorAccent"
+                android:background="@color/colorAccent"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                app:cardElevation="10dp"
+                android:layout_gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp">
-
+                android:layout_height="220dp">
                 <ImageView
-                    android:layout_width="380dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/shape_item"
-                    android:layout_marginRight="18dp"
-                    android:layout_marginLeft="18dp" />
-
-                <TextView
                     android:layout_width="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"
                     android:layout_height="wrap_content"
-                    android:text="SHAPES"
-                    android:textSize="40sp"
-                    android:textStyle="bold"
-                    android:textColor="#fff"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/cabin_sketch_bold"
-                    android:layout_marginStart="105dp"
-                    android:layout_marginTop="20dp"/>
-
-            </RelativeLayout>
+                    android:src="@drawable/shapesgameicon"
+                    />
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 
     </ScrollView>
 
-</LinearLayout>
+</RelativeLayout>
