@@ -93,7 +93,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyHold
             editor.apply();
             if (categoryList.get(i).getpID().equals("Admin")) {
                 Toast.makeText(context, "default categories can't be deleted", Toast.LENGTH_SHORT).show();
-            } else {
+            } else if(isParent) {
                 showDeleteCategoryDialog(categoryList.get(i));
             }
             return false;

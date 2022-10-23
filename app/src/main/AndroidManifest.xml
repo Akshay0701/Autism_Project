@@ -20,6 +20,9 @@
         android:theme="@style/Theme.AutismProject"
         tools:targetApi="31">
         <activity
+            android:name=".Child.ChildClickBoard"
+            android:exported="false" />
+        <activity
             android:name=".Child.ChildTaskActivity"
             android:exported="false" />
         <activity
@@ -27,9 +30,6 @@
             android:exported="false" />
         <activity
             android:name=".Child.ChildVideos"
-            android:exported="false" />
-        <activity
-            android:name=".Child.ChildMain"
             android:exported="false" />
         <activity android:name=".Games.ShapesActivity" />
         <activity android:name=".Games.WeekActivity" />

@@ -22,7 +22,7 @@ public class ChildHome extends AppCompatActivity {
         setContentView(R.layout.activity_child_home);
         clickBoardCarView = findViewById(R.id.card_clickboard);
         clickBoardCarView.setOnClickListener(view -> {
-//           startActivity(new Intent(ChildHome.this, ChildClickBoard.class));
+           startActivity(new Intent(ChildHome.this, ChildClickBoard.class));
         });
 
         gamesCardView = findViewById(R.id.card_gaming);

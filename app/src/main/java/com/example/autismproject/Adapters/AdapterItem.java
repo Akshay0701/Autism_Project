@@ -74,10 +74,18 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.MyHolder>  {
         holder.itemText.setText(text);
 
         holder.itemView.setOnClickListener(view -> {
-            if (itemList.get(position).getpID().equals("Admin")) {
-                Toast.makeText(context, "default items can't be deleted", Toast.LENGTH_SHORT).show();
+            if (isParent) {
+                if (itemList.get(position).getpID().equals("Admin")) {
+                    Toast.makeText(context, "default items can't be deleted", Toast.LENGTH_SHORT).show();
+                } else {
+                    showDeleteItemDialog(itemList.get(position));
+                }
             } else {
-                showDeleteItemDialog(itemList.get(position));
+                // for child click
+                SharedPreferences.Editor editor;
+                editor= PreferenceManager.getDefaultSharedPreferences(context).edit();
+                editor.putString("selectedItemID", iId);
+                editor.apply();
             }
         });
     }
