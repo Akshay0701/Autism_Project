@@ -185,7 +185,7 @@ public class AdapterVideos extends RecyclerView.Adapter<AdapterVideos.MyHolder> 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.row_video_title);
-            description = itemView.findViewById(R.id.row_video_description);
+//            description = itemView.findViewById(R.id.row_video_description);
             time = itemView.findViewById(R.id.row_video_time);
             videoThumbnail = itemView.findViewById(R.id.row_video_thumbnail);
         }
