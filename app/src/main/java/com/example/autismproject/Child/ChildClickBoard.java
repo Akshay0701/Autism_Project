@@ -101,7 +101,6 @@ public class ChildClickBoard extends AppCompatActivity {
         textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int i) {
-
                 // if No error is found then only it will run
                 if(i!=TextToSpeech.ERROR){
                     // To Choose language of speech
@@ -152,7 +151,6 @@ public class ChildClickBoard extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     Item item = dataSnapshot.child(idStr).getValue(Item.class);
-                    Toast.makeText(ChildClickBoard.this, item.getText(), Toast.LENGTH_SHORT).show();
                     if (selectedItemText1.getText().toString().equals("")) {
                         try{
                             Picasso.get().load(item.getImgUrl()).placeholder(R.drawable.childlogo).into(selectedItemImage1);
