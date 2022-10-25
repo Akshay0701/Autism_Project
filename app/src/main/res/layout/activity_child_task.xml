@@ -113,7 +113,6 @@
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
-
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
@@ -152,7 +151,5 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:src="@drawable/backiconwhite"></ImageView>
-
-
 
 </RelativeLayout>

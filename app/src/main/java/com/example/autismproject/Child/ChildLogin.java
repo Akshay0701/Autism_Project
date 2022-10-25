@@ -177,7 +177,7 @@ public class ChildLogin extends AppCompatActivity {
         String selectedChild=prefs.getString("selectedChildID","");
         String pass=prefs.getString("password","");
 
-        if(username.equals("")&&pass.equals("")&&selectedChild.equals("")) {
+        if(username.equals("")&& pass.equals("") || selectedChild.equals("")) {
             Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
         }
         else {
