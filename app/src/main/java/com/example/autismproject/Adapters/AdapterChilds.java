@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import com.example.autismproject.Parent.ParentRegister;
 import com.example.autismproject.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.database.DatabaseError;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -57,11 +59,22 @@ public class AdapterChilds extends RecyclerView.Adapter<AdapterChilds.MyHolder> 
         final String name= childList.get(position).getName();
         final String age= childList.get(position).getAge();
         final String scores= childList.get(position).getScores();
+        final String imgUrl= childList.get(position).getImgUrl();
 
         //setdata
         holder.childName.setText(name);
         holder.childAge.setText("Age : "+ age);
         holder.childScores.setText("Scores : " + scores);
+
+        //setdata
+        try{
+            Picasso.get().load(imgUrl).placeholder(R.drawable.loading).into(holder.childImage);
+        }catch (Exception e){
+            Picasso.get().load(R.drawable.childimg).into(holder.childImage);
+        }
+
+        holder.childImage.setScaleType(ImageView.ScaleType.FIT_XY);
+
 
         holder.itemView.setOnClickListener(view -> {
             SharedPreferences.Editor editor;
@@ -87,12 +100,14 @@ public class AdapterChilds extends RecyclerView.Adapter<AdapterChilds.MyHolder> 
     }
 
     static class MyHolder extends RecyclerView.ViewHolder{
+        ImageView childImage;
         TextView childName, childAge, childScores;
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             childName=itemView.findViewById(R.id.row_child_name);
             childAge=itemView.findViewById(R.id.row_child_age);
             childScores=itemView.findViewById(R.id.row_child_score);
+            childImage=itemView.findViewById(R.id.row_video_thumbnail);
         }
     }
 

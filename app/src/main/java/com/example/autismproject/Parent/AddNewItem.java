@@ -105,7 +105,7 @@ public class AddNewItem extends AppCompatActivity {
         //image
         imageIv.setOnClickListener(v -> showImageDialog());
 
-        addItem = findViewById(R.id.parent_add_categoryBtn);
+        addItem = findViewById(R.id.parent_add_itemBtn);
         addItem.setOnClickListener(view -> checkValidation());
     }
 

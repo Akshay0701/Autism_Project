@@ -47,12 +47,15 @@
             android:exported="false" />
         <activity
             android:name=".Parent.AddNewItem"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".Parent.AddNewCategory"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".Parent.ParentClickBoard"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".VideoPlayer"
@@ -73,6 +76,7 @@
             android:exported="false" />
         <activity
             android:name=".Parent.ParentHome"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".Child.ChildHome"

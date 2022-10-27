@@ -17,13 +17,16 @@
         android:id="@+id/texthead"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:fontFamily="@font/montserrat"
-        android:textColor="#305F72"
-        android:layout_margin="10dp"
         android:gravity="center"
         android:text="ClickBoard"
+        android:textColor="#305F72"
         android:textSize="26dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,6 +49,7 @@
                 android:layout_marginBottom="-20dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/clickboardbackgroundimg"></ImageView>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
@@ -216,23 +220,31 @@
             android:layout_height="match_parent"/>
 
     </LinearLayout>
-
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/parent_clickboard_bottomcategory"
         android:layout_width="match_parent"
-        android:background="#7E9CFA30"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:layout_height="75dp">
+        android:layout_height="80dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:src="@drawable/childclickboardbackimg"
+            android:scaleType="fitXY"
+            android:layout_marginBottom="-20dp"
+            android:layout_height="100dp"></ImageView>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
             android:id="@+id/child_clickboard_category_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="5dp"
             android:background="@null"
-            android:orientation="horizontal"
-            tools:listitem="@layout/row_clickboard_category"
             android:nestedScrollingEnabled="false"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+            android:orientation="horizontal"
+            tools:listitem="@layout/row_clickboard_category" />
+    </RelativeLayout>
+
 
 </RelativeLayout>

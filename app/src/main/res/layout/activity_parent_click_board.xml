@@ -5,75 +5,103 @@
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
     tools:context=".Parent.ParentClickBoard">
+
+
+
+    <ImageView
+        android:id="@+id/backBtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/backiconwhite"></ImageView>
+
     <TextView
         android:id="@+id/texthead"
-        android:text="Click Dashboard"
-        android:textSize="26dp"
-        android:layout_alignParentTop="true"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimaryblack"
-        android:layout_marginLeft="7dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></TextView>
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:text="ClickBoard"
+        android:textColor="#305F72"
+        android:textSize="26dp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/parent_clickboard_addcategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/texthead"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="@color/colorAccent"
+        android:layout_below="@+id/texthead"
+        android:layout_margin="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_states"
+        android:fontFamily="@font/montserrat"
         android:text="Add Category"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@color/colorAccent"
+        android:textSize="20dp"
+        android:textStyle="bold"></Button>
+
     <Button
-        android:layout_below="@id/parent_clickboard_addcategory"
+        android:id="@+id/parent_clickboard_additem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="Add new Item"
+        android:layout_marginHorizontal="10dp"
+        android:layout_below="@+id/parent_clickboard_addcategory"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_states2"
+        android:fontFamily="@font/montserrat"
+        android:text="Add Item"
         android:textColor="@color/colorAccent"
-        android:id="@+id/parent_clickboard_additem"
-        android:background="@color/colorAccent"
-        android:layout_marginBottom="0dp"/>
+        android:textSize="20dp"
+        android:textStyle="bold"></Button>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_margin="10dp"
-        android:layout_below="@id/parent_clickboard_additem"
+        android:layout_height="wrap_content"
         android:layout_above="@id/parent_clickboard_bottomcategory"
+        android:layout_below="@id/parent_clickboard_additem"
         android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:padding="10dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
             android:id="@+id/parent_clickboard_item_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@null"
-            tools:listitem="@layout/row_clickboard_object"
             android:nestedScrollingEnabled="false"
-            android:layout_height="match_parent"/>
+            tools:listitem="@layout/row_clickboard_object" />
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/parent_clickboard_bottomcategory"
         android:layout_width="match_parent"
-        android:background="@color/colorPrimary"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:layout_height="80dp">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <ImageView
             android:layout_width="match_parent"
+            android:src="@drawable/clickboardbackimg"
+            android:scaleType="fitXY"
+            android:layout_marginBottom="-20dp"
+            android:layout_height="100dp"></ImageView>
+
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/parent_clickboard_category_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="5dp"
             android:background="@null"
-            android:orientation="horizontal"
-            tools:listitem="@layout/row_clickboard_category"
             android:nestedScrollingEnabled="false"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+            android:orientation="horizontal"
+            tools:listitem="@layout/row_clickboard_category" />
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -1,17 +1,26 @@
 package com.example.autismproject.Models;
 
 public class Child {
-    String cID, pID, name, age, scores;
+    String cID, pID, name, age, scores, imgUrl;
 
     public Child() {
     }
 
-    public Child(String cID, String pID, String name, String age, String scores) {
+    public Child(String cID, String pID, String name, String age, String scores, String imgUrl) {
         this.cID = cID;
         this.pID = pID;
         this.name = name;
         this.age = age;
         this.scores = scores;
+        this.imgUrl = imgUrl;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public String getcID() {

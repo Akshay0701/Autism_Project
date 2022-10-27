@@ -127,6 +127,7 @@ public class ParentHome extends AppCompatActivity {
     private void createNewChildDialog() {
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setPadding(30, 20, 30, 20);
 
         final EditText nameBox = new EditText(this);
         nameBox.setHint("Child Full Name");
@@ -162,6 +163,7 @@ public class ParentHome extends AppCompatActivity {
                         hashMap.put("age", ageBox.getText().toString());
                         hashMap.put("scores", "0");
                         hashMap.put("cID", cID);
+                        hashMap.put("imgUrl", "https://www.familyeducation.com/sites/default/files/inline-images/teaching-kids-about-autism_repetitive-motions.jpg");
                         hashMap.put("pID",mUid);
 
                         databaseReference.child(cID).setValue(hashMap);
