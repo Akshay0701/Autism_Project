@@ -52,10 +52,12 @@ public class ChildTaskActivity extends AppCompatActivity {
     String mUid,mEmail;
     private FirebaseAuth mAuth;
 
+    Task task;
+
     ImageView childImageView;
     TextView childTime, childTimer, childDescription;
 
-    TextToSpeech textToSpeech;
+//    TextToSpeech textToSpeech;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,18 +68,19 @@ public class ChildTaskActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Tasks");
 
-        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int i) {
-
-                // if No error is found then only it will run
-                if(i!=TextToSpeech.ERROR){
-                    // To Choose language of speech
-                    textToSpeech.setLanguage(Locale.UK);
-                    textToSpeech.setSpeechRate((float)0.7);
-                }
-            }
-        });
+        // TODO poor implementation
+//        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+//            @Override
+//            public void onInit(int i) {
+//
+//                // if No error is found then only it will run
+//                if(i!=TextToSpeech.ERROR){
+//                    // To Choose language of speech
+//                    textToSpeech.setLanguage(Locale.UK);
+//                    textToSpeech.setSpeechRate((float)0.7);
+//                }
+//            }
+//        });
 
         childDescription = findViewById(R.id.child_task_description);
         childTime = findViewById(R.id.child_task_time);
@@ -87,7 +90,7 @@ public class ChildTaskActivity extends AppCompatActivity {
         childDescription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                textToSpeech.speak(childDescription.getText().toString(),TextToSpeech.QUEUE_FLUSH,null);
+//                textToSpeech.speak(childDescription.getText().toString(),TextToSpeech.QUEUE_FLUSH,null);
             }
         });
 
@@ -120,17 +123,17 @@ public class ChildTaskActivity extends AppCompatActivity {
     }
 
     private void loadTaskDetails() {
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    Task task = ds.getValue(Task.class);
+                    task = ds.getValue(Task.class);
                     if(task != null && task.gettID().equals(tID)){
                         // insert all values of task
                         setTimeText(task.getTimestamp());
                         childDescription.setText(task.getText());
-                        textToSpeech.speak(task.getText().toString(),TextToSpeech.QUEUE_FLUSH,null);
+//                        textToSpeech.speak(task.getText().toString(),TextToSpeech.QUEUE_FLUSH,null);
 
                         int time = Integer.parseInt(task.getTimer()) * 1000;
                         new CountDownTimer(time, 1000) { // adjust the milli seconds here
@@ -190,42 +193,40 @@ public class ChildTaskActivity extends AppCompatActivity {
     }
 
     private void completeTaskAndExit() {
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    Task task = ds.getValue(Task.class);
-                    if(task != null && task.gettID().equals(tID)){
-                        Map<String, Object> hashMap = new HashMap<>();
-                        //put info
-                        hashMap.put("tID", tID);
-                        hashMap.put("text", task.getText());
-                        hashMap.put("timestamp",task.getTimestamp());
-                        hashMap.put("timer", task.getTimer());
-                        hashMap.put("isComplete", "1");
-                        hashMap.put("pID", task.getpID());
-                        hashMap.put("cID", task.getcID());
-                        hashMap.put("imgUrl", task.getImgUrl());
-                        databaseReference.child(tID).updateChildren(hashMap).addOnSuccessListener(aVoid -> {
-                            Toast.makeText(ChildTaskActivity.this, "Task Uploaded", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }).addOnFailureListener(e -> {
-                            Toast.makeText(ChildTaskActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                            finish();
-                        });
-
-                        break;
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        Task task = ds.getValue(Task.class);
+                        if(task != null && task.gettID().equals(tID)){
+                            Map<String, Object> hashMap = new HashMap<>();
+                            //put info
+                            hashMap.put("tID", tID);
+                            hashMap.put("text", task.getText());
+                            hashMap.put("timestamp",task.getTimestamp());
+                            hashMap.put("timer", task.getTimer());
+                            hashMap.put("isComplete", "1");
+                            hashMap.put("pID", task.getpID());
+                            hashMap.put("cID", task.getcID());
+                            hashMap.put("imgUrl", task.getImgUrl());
+                            databaseReference.child(tID).updateChildren(hashMap).addOnSuccessListener(aVoid -> {
+                                Toast.makeText(ChildTaskActivity.this, "Task Uploaded", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }).addOnFailureListener(e -> {
+                                Toast.makeText(ChildTaskActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                finish();
+                            });
+                            break;
+                        }
                     }
                 }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(ChildTaskActivity.this, "" + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(ChildTaskActivity.this, "" + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     void setTimeText(String timestamp) {

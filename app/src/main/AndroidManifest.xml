@@ -29,10 +29,12 @@
             android:exported="false" />
         <activity
             android:name=".Child.ChildTodoList"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".Child.ChildVideos"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="false" />
         <activity android:name=".Games.ShapesActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
@@ -64,12 +66,15 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Parent.ParentVideo"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".Parent.CreateTask"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".Parent.ParentTasksActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".Parent.ChildProfile"

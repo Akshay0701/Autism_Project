@@ -80,6 +80,7 @@ public class ParentVideo extends AppCompatActivity {
     private void createNewTaskDialog() {
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setPadding(30, 20, 30, 20);
 
         final EditText nameBox = new EditText(this);
         nameBox.setHint("Video Title");

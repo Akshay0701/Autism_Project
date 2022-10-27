@@ -20,10 +20,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.autismproject.Child.ChildTaskActivity;
+import com.example.autismproject.Models.Category;
 import com.example.autismproject.Models.Child;
 import com.example.autismproject.Models.Task;
+import com.example.autismproject.Parent.AddNewItem;
 import com.example.autismproject.Parent.ChildProfile;
 import com.example.autismproject.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -39,8 +42,10 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 // this class is going to be in use to display child's to respective parents
 public class AdapterTasks extends RecyclerView.Adapter<AdapterTasks.MyHolder>  {
@@ -109,8 +114,8 @@ public class AdapterTasks extends RecyclerView.Adapter<AdapterTasks.MyHolder>  {
         holder.itemView.setOnClickListener(view -> {
 
             if (isParent) {
-                // show dialog of deleting task
-                showDeleteTaskDialog(taskList.get(position));
+                // show dialog of actions
+                showActionTaskDialog(taskList.get(position));
             } else if (taskList.get(position).getIsComplete().equals("0")) {
                 // start Task playing for child
                 SharedPreferences.Editor editor;
@@ -133,6 +138,44 @@ public class AdapterTasks extends RecyclerView.Adapter<AdapterTasks.MyHolder>  {
 
     }
 
+    private void showActionTaskDialog(Task task) {
+
+        DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
+            switch (which){
+                case DialogInterface.BUTTON_POSITIVE:
+                    //Yes button clicked
+                    showDeleteTaskDialog(task);
+                    break;
+                case DialogInterface.BUTTON_NEGATIVE:
+                    //No button clicked
+                    showResetTaskStatusDialog(task);
+                    break;
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("Select the action?").setPositiveButton("Delete Task", dialogClickListener)
+                .setNegativeButton("Reset Status", dialogClickListener).show();
+    }
+
+    private void showResetTaskStatusDialog(Task task) {
+        DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
+            switch (which){
+                case DialogInterface.BUTTON_POSITIVE:
+                    //Yes button clicked
+                    resetTaskStatus(task);
+                    break;
+                case DialogInterface.BUTTON_NEGATIVE:
+                    //No button clicked
+                    break;
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("Do you want to reset the reset status?").setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
+    }
+
     private void showDeleteTaskDialog(Task task) {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
@@ -153,6 +196,30 @@ public class AdapterTasks extends RecyclerView.Adapter<AdapterTasks.MyHolder>  {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("Do you want to delete task?").setPositiveButton("Yes", dialogClickListener)
                 .setNegativeButton("No", dialogClickListener).show();
+    }
+
+    private void resetTaskStatus(Task task) {
+        Map<String, Object> hashMap = new HashMap<>();
+        //put info
+        hashMap.put("tID", task.gettID());
+        hashMap.put("text", task.getText());
+        hashMap.put("timestamp",task.getTimestamp());
+        hashMap.put("timer", task.getTimer());
+        hashMap.put("isComplete", "0");
+        hashMap.put("pID", task.getpID());
+        hashMap.put("cID", task.getcID());
+        hashMap.put("imgUrl", task.getImgUrl());
+        FirebaseDatabase.getInstance().getReference("Tasks").child(task.gettID()).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> task) {
+                Toast.makeText(context, "Status changed", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void deleteTask(Task task) {

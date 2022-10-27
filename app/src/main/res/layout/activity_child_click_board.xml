@@ -7,6 +7,16 @@
     tools:context=".Child.ChildClickBoard">
 
     <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginLeft="-30dp"
+        android:layout_marginTop="-70dp"
+        android:layout_marginRight="-30dp"
+        android:layout_marginBottom="-20dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/clickboardbackgroundimg"></ImageView>
+
+    <ImageView
         android:id="@+id/backBtn"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -20,7 +30,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
         android:text="ClickBoard"
@@ -37,23 +47,11 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:background="@color/colorAccent"
             android:layout_height="200dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="-30dp"
-                android:layout_marginTop="-10dp"
-                android:layout_marginRight="-30dp"
-                android:layout_marginBottom="-20dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/clickboardbackgroundimg"></ImageView>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
-                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:padding="10dp"
                 android:weightSum="3">
@@ -65,7 +63,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@color/colorAccent"
-                    android:elevation="20dp"
+                    android:elevation="10dp"
                     android:padding="10dp"
                     app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="10dp"
@@ -107,7 +105,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@color/colorAccent"
-                    android:elevation="20dp"
+                    android:elevation="10dp"
                     android:padding="10dp"
                     app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="10dp"
@@ -149,7 +147,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@color/colorAccent"
-                    android:elevation="20dp"
+                    android:elevation="10dp"
                     android:padding="10dp"
                     app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="10dp"

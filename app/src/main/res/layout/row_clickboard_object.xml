@@ -35,6 +35,5 @@
             android:textSize="18dp"
             style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
             />
-
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/colorAccent"
     android:layout_height="match_parent"
     tools:context=".Parent.CreateTask">
 
@@ -23,72 +22,113 @@
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 android:id="@+id/requestBox"
-                android:layout_margin="20dp"
+                android:layout_margin="10dp"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:text="Add New Task"
-                    android:textSize="26dp"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorPrimaryblack"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginTop="15dp"
+
+                <LinearLayout
+                    android:weightSum="3"
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></TextView>
+                    android:layout_height="50dp">
+
+                    <ImageView
+                        android:id="@+id/backBtn"
+                        android:layout_weight="1"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/backiconwhite"></ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/montserrat"
+                        android:gravity="center"
+                        android:text="Add New Task"
+                        android:textColor="@color/colorText"
+                        android:textSize="26dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
                 <EditText
-                    android:layout_marginTop="20dp"
-                    android:layout_width="match_parent"
-                    android:hint="Task Description"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textColorHint="@color/colorgray"
-                    android:textColor="@color/colorPrimaryDark"
                     android:id="@+id/parent_add_task_description"
-                    android:layout_height="wrap_content"></EditText>
-                <EditText
-                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
-                    android:hint="Number of Second"
-                    android:inputType="number"
-                    android:textColorHint="@color/colorgray"
-                    android:textColor="@color/colorPrimaryblack"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:padding="15dp"
+                    android:maxLines="1"
+                    android:fontFamily="@font/montserrat"
+                    android:hint="Enter Task Description"
+                    android:background="@drawable/edittext_states"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textColorHint="@color/colorPrimaryblack"></EditText>
+
+                <EditText
                     android:id="@+id/parent_add_task_timer"
-                    android:layout_height="wrap_content"></EditText>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:padding="15dp"
+                    android:fontFamily="@font/montserrat"
+                    android:hint="Enter Number of Second"
+                    android:background="@drawable/edittext_states"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textColorHint="@color/colorPrimaryblack"></EditText>
+
                 <TextView
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:text="Select Time"
+                    android:padding="12dp"
                     android:textSize="20dp"
-                    android:textColor="@color/colorPrimaryblack"
+                    android:textColor="@color/colorText"
                     android:id="@+id/parent_add_task_time"
                     android:layout_height="wrap_content"></TextView>
                 <TextView
                     android:text="Select Image"
-                    android:textSize="26dp"
+                    android:textSize="24dp"
                     android:gravity="center"
                     android:textStyle="bold"
-                    android:textColor="@color/colorPrimaryblack"
+                    android:textColor="@color/colorPrimaryFadded"
                     android:layout_marginLeft="7dp"
                     android:layout_marginTop="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"></TextView>
+
                 <ImageView
                     android:id="@+id/parent_add_task_image"
-                    android:layout_width="150dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/childlogo"
-                    android:layout_height="200dp"></ImageView>
+                    android:scaleType="fitCenter"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_baseline_camera_alt_24"></ImageView>
+
                 <Button
-                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Add Task"
-                    android:layout_marginBottom="60dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/button_states"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Upload Task"
                     android:textColor="@color/colorAccent"
-                    android:id="@+id/parent_add_taskbtn"
+                    android:textSize="20dp"
                     android:textStyle="bold"
-                    android:background="@color/colorPrimary"/>
+                    android:id="@+id/parent_add_taskbtn"/>
+
+                <TextView
+                    android:text="Note: Task uploaded by you, will be only accesible by particular Child selected previously, child have view access to the allocated tasks."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/montserrat"
+                    android:layout_marginBottom="30dp"
+                    android:textColor="@color/colorPrimaryblack"
+                    android:gravity="center"></TextView>
             </LinearLayout>
         </ScrollView>
     </androidx.cardview.widget.CardView>
