@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.autismproject.Adapters.AdapterVideos;
@@ -36,6 +37,7 @@ public class ChildVideos extends AppCompatActivity {
     RecyclerView.LayoutManager  layoutManager;
     List<Video> videoList;
     AdapterVideos adapterVideos;
+    ImageView backBtn;
 
     // child id for retrieving all tasks
     String cID;
@@ -62,6 +64,11 @@ public class ChildVideos extends AppCompatActivity {
         videoRecyclerView.setLayoutManager(layoutManager);
 
         videoList = new ArrayList<>();
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> {
+            finish();
+        });
     }
 
 

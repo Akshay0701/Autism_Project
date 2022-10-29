@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -16,6 +17,7 @@ public class GameMainAcitivty extends AppCompatActivity {
 
     CardView color, number, alphabet, week, shape;
 //    LinearLayout poem;
+    ImageView backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,12 @@ public class GameMainAcitivty extends AppCompatActivity {
         week = findViewById(R.id.week);
         shape = findViewById(R.id.shape);
 //        poem = findViewById(R.id.lil_poem);
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> {
+            finish();
+        });
+
 
         color.setOnClickListener(new View.OnClickListener() {
             @Override

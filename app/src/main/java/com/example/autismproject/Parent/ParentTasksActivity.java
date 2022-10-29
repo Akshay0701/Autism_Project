@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.autismproject.Adapters.AdapterChilds;
@@ -52,6 +53,8 @@ public class ParentTasksActivity extends AppCompatActivity {
     String mUid,mEmail;
     private FirebaseAuth mAuth;
 
+    ImageView backBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +70,9 @@ public class ParentTasksActivity extends AppCompatActivity {
             // open create new task activity
             startActivity(new Intent(ParentTasksActivity.this, CreateTask.class));
         });
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> finish());
 
         //load recycleBook
         taskRecyclerView =(RecyclerView)findViewById(R.id.parent_home_childrecyclerView);

@@ -11,6 +11,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.autismproject.R;
@@ -32,6 +33,7 @@ public class ParentRegister extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     Button gotoLogin,registerBtn;
+    ImageView backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,9 @@ public class ParentRegister extends AppCompatActivity {
 
         registerBtn = findViewById(R.id.parent_register_Btn);
         gotoLogin = findViewById(R.id.parent_register_gotoLogin);
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> finish());
 
         //init firebase
         mAuth = FirebaseAuth.getInstance();

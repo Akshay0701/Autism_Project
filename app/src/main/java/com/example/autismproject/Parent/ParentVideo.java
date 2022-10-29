@@ -15,6 +15,7 @@ import android.preference.PreferenceManager;
 import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -53,6 +54,8 @@ public class ParentVideo extends AppCompatActivity {
     String mUid,mEmail;
     private FirebaseAuth mAuth;
 
+    ImageView backBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +64,9 @@ public class ParentVideo extends AppCompatActivity {
         //init firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Videos");
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> finish());
 
         addNewVideo = findViewById(R.id.parent_video_addnewvideo);
         addNewVideo.setOnClickListener(view -> {

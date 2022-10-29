@@ -43,6 +43,7 @@ public class ChildClickBoard extends AppCompatActivity {
     // Selected Items
     ImageView selectedItemImage1, selectedItemImage2, selectedItemImage3, playIcon, deleteIcon;
     TextView selectedItemText1, selectedItemText2, selectedItemText3;
+    ImageView backBtn;
 
     // for category
     RecyclerView categoryRecyclerView;
@@ -88,6 +89,11 @@ public class ChildClickBoard extends AppCompatActivity {
             public void onClick(View view) {
                 playSelectedItems();
             }
+        });
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> {
+            finish();
         });
 
         deleteIcon = findViewById(R.id.child_clickboard_deleteBtn);

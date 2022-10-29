@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -58,6 +59,7 @@ public class ChildLogin extends AppCompatActivity {
     DatabaseReference databaseReference;
 
     LinearLayout parentLinear, childSelectionLinear;
+    ImageView backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,11 @@ public class ChildLogin extends AppCompatActivity {
         loginBtn = findViewById(R.id.child_login_signIn);
         parentLinear = findViewById(R.id.child_login_parentLinear);
         childSelectionLinear = findViewById(R.id.child_login_childselectionLinear);
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> {
+            finish();
+        });
 
         //init firebase
         mAuth = FirebaseAuth.getInstance();

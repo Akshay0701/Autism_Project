@@ -85,6 +85,8 @@ public class CreateTask extends AppCompatActivity {
     String mUid,mEmail;
     private FirebaseAuth mAuth;
 
+    ImageView backBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +109,11 @@ public class CreateTask extends AppCompatActivity {
 
         //image
         imageIv.setOnClickListener(v -> showImageDialog());
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> {
+            finish();
+        });
 
 
         addTask.setOnClickListener(view -> checkValidation());

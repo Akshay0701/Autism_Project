@@ -30,7 +30,7 @@
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/cabin_sketch"
         android:gravity="center"
-        android:text="Poems &amp; Rhymes "
+        android:text="Welcome Akshay"
         android:textColor="#fff"
         android:textSize="45sp"
         android:textStyle="bold" />

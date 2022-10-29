@@ -43,7 +43,7 @@ public class AddNewCategory extends AppCompatActivity {
 
     EditText categoryName;
     Button addCategory;
-    ImageView imageIv;
+    ImageView imageIv, backBtn;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -76,6 +76,11 @@ public class AddNewCategory extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_category);
         categoryName=findViewById(R.id.parent_add_category_name);
         imageIv=findViewById(R.id.parent_add_category_image);
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> {
+            finish();
+        });
 
         pd= new ProgressDialog(this);
 

@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.autismproject.Adapters.AdapterCategory;
@@ -63,6 +64,7 @@ public class ParentClickBoard extends AppCompatActivity {
 
     String mUid,mEmail;
     private FirebaseAuth mAuth;
+    ImageView backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +80,11 @@ public class ParentClickBoard extends AppCompatActivity {
         addNewCategory = findViewById(R.id.parent_clickboard_addcategory);
         addNewCategory.setOnClickListener(view -> {
             startActivity(new Intent(ParentClickBoard.this, AddNewCategory.class));
+        });
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> {
+            finish();
         });
 
         addNewItem = findViewById(R.id.parent_clickboard_additem);

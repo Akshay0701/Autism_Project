@@ -37,9 +37,7 @@ public class VideoPlayer extends AppCompatActivity {
         youTubePlayerView.setClickable(false);
 
         backBtn = findViewById(R.id.backBtn);
-        backBtn.setOnClickListener(view -> {
-            finish();
-        });
+        backBtn.setOnClickListener(view -> finish());
 
     }
 

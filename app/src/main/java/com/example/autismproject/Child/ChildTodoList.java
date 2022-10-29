@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.autismproject.Adapters.AdapterTasks;
@@ -48,6 +49,8 @@ public class ChildTodoList extends AppCompatActivity {
     String mUid,mEmail;
     private FirebaseAuth mAuth;
 
+    ImageView backBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +59,11 @@ public class ChildTodoList extends AppCompatActivity {
         // init firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Tasks");
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> {
+            finish();
+        });
 
         // load recycleBook
         taskRecyclerView =(RecyclerView)findViewById(R.id.child_task_childrecyclerView);

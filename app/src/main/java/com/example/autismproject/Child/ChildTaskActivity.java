@@ -54,6 +54,7 @@ public class ChildTaskActivity extends AppCompatActivity {
 
     Task task;
 
+    ImageView backBtn;
     ImageView childImageView;
     TextView childTime, childTimer, childDescription;
 
@@ -67,6 +68,11 @@ public class ChildTaskActivity extends AppCompatActivity {
         //init firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Tasks");
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> {
+            finish();
+        });
 
         // TODO poor implementation
 //        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {

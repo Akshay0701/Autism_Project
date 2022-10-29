@@ -54,6 +54,8 @@ public class AddNewItem extends AppCompatActivity {
     ImageView imageIv, selectedCategoryImage;
     TextView selectedCategoryName;
 
+    ImageView backBtn;
+
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
@@ -89,6 +91,11 @@ public class AddNewItem extends AppCompatActivity {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Items");
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> {
+            finish();
+        });
 
         selectedCategoryImage = findViewById(R.id.add_item_selectedCategory);
         selectedCategoryName = findViewById(R.id.add_item_selectedCategory_text);

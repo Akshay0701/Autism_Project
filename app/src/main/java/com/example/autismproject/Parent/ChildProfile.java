@@ -37,6 +37,7 @@ public class ChildProfile extends AppCompatActivity {
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    ImageView backBtn;
 
     Child childProfile;
 
@@ -58,6 +59,11 @@ public class ChildProfile extends AppCompatActivity {
         childProfileDetails = findViewById(R.id.child_profile_name_age_scores);
         childProfileName = findViewById(R.id.child_profile_name);
         childImage = findViewById(R.id.child_profile_img);
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(view -> {
+            finish();
+        });
 
         childTasks = findViewById(R.id.cardview_task);
         childTasks.setOnClickListener(view -> {
