@@ -2,6 +2,7 @@ package com.example.autismproject.Parent;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
@@ -11,9 +12,11 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.autismproject.Adapters.AdapterChilds;
 import com.example.autismproject.Games.GameMainAcitivty;
 import com.example.autismproject.Models.Child;
@@ -25,11 +28,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 // this activity helps parent get more details of child and provide facilities to add new task, games, videos for thier child.
 public class ChildProfile extends AppCompatActivity {
 
-    TextView childProfileDetails;
+    TextView childProfileDetails, childProfileName;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -39,7 +43,8 @@ public class ChildProfile extends AppCompatActivity {
     String mPid,mEmail;
     private FirebaseAuth mAuth;
 
-    Button childTasks, childGames, childVideos;
+    CardView childTasks, childGames, childVideos;
+    ImageView childImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,24 +56,21 @@ public class ChildProfile extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference("Childs");
 
         childProfileDetails = findViewById(R.id.child_profile_name_age_scores);
+        childProfileName = findViewById(R.id.child_profile_name);
+        childImage = findViewById(R.id.child_profile_img);
 
-        childTasks = findViewById(R.id.child_profile_task);
+        childTasks = findViewById(R.id.cardview_task);
         childTasks.setOnClickListener(view -> {
             startActivity(new Intent(ChildProfile.this, ParentTasksActivity.class));
         });
 
-        childGames = findViewById(R.id.child_profile_games);
+        childGames = findViewById(R.id.cardview_games);
         childGames.setOnClickListener(view -> {
             startActivity(new Intent(ChildProfile.this, GameMainAcitivty.class));
         });
 
-        childVideos = findViewById(R.id.child_profile_videos);
-        childVideos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ChildProfile.this, ParentVideo.class));
-            }
-        });
+        childVideos = findViewById(R.id.cardview_video);
+        childVideos.setOnClickListener(view -> startActivity(new Intent(ChildProfile.this, ParentVideo.class)));
     }
 
     @Override
@@ -103,7 +105,13 @@ public class ChildProfile extends AppCompatActivity {
                         if(child != null && child.getcID().equals(cID)) {
                             childProfile = child;
                             //adapter
-                            childProfileDetails.setText("Name: " + childProfile.getName() + " Age: " + childProfile.getAge() + " Scores: " + childProfile.getScores());
+                            try{
+                                Picasso.get().load(child.getImgUrl()).placeholder(R.drawable.childlogo).into(childImage);
+                            }catch (Exception e){
+                                Picasso.get().load(R.drawable.childlogo).into(childImage);
+                            }
+                            childProfileName.setText(childProfile.getName());
+                            childProfileDetails.setText(" Age: " + childProfile.getAge() + ", Scores: " + childProfile.getScores());
                         }
                     }
                 }

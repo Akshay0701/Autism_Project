@@ -78,6 +78,7 @@
             android:exported="false" />
         <activity
             android:name=".Parent.ChildProfile"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".Parent.ParentHome"
