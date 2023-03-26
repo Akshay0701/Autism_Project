@@ -64,7 +64,7 @@ public class AdapterChilds extends RecyclerView.Adapter<AdapterChilds.MyHolder> 
         //setdata
         holder.childName.setText(name);
         holder.childAge.setText("Age : "+ age);
-        holder.childScores.setText("Scores : " + scores);
+        holder.childScores.setText("Autism : " + scores);
 
         //setdata
         try{

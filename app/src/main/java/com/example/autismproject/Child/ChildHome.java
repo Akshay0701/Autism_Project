@@ -12,7 +12,7 @@ import com.example.autismproject.R;
 
 public class ChildHome extends AppCompatActivity {
 
-    CardView clickBoardCarView, gamesCardView, todoListCardView, videosCardView;
+    CardView clickBoardCarView, gamesCardView, todoListCardView, videosCardView, mCQCardView;
 
 
 
@@ -20,6 +20,10 @@ public class ChildHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_home);
+
+        mCQCardView = findViewById(R.id.card_MCQ);
+        mCQCardView.setOnClickListener(view -> startActivity(new Intent(ChildHome.this, mcqtest.class)));
+
         clickBoardCarView = findViewById(R.id.card_clickboard);
         clickBoardCarView.setOnClickListener(view -> {
            startActivity(new Intent(ChildHome.this, ChildClickBoard.class));

@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.autismproject.Adapters.AdapterTasks;
+import com.example.autismproject.Models.Child;
 import com.example.autismproject.Models.Task;
 import com.example.autismproject.Parent.CreateTask;
 import com.example.autismproject.Parent.ParentHome;
@@ -48,6 +49,7 @@ public class ChildTodoList extends AppCompatActivity {
 
     String mUid,mEmail;
     private FirebaseAuth mAuth;
+
 
     ImageView backBtn;
 

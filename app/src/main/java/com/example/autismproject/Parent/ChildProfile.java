@@ -117,7 +117,7 @@ public class ChildProfile extends AppCompatActivity {
                                 Picasso.get().load(R.drawable.childlogo).into(childImage);
                             }
                             childProfileName.setText(childProfile.getName());
-                            childProfileDetails.setText(" Age: " + childProfile.getAge() + ", Scores: " + childProfile.getScores());
+                            childProfileDetails.setText(" Age: " + childProfile.getAge() + ", Autism: " + childProfile.getScores());
                         }
                     }
                 }
