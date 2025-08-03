@@ -42,7 +42,7 @@ The KidEaseHub app is built using native Android technologies, ensuring optimal 
 ## Installation & Setup
 1. Clone the repository:
    ```bash
-   git clone https://github.com/krupas23/KidEaseHub.git
+   git clone https://github.com/akshay0701/KidEaseHub.git
    ```
 2. Open the project in **Android Studio**.
 3. Configure Firebase:
